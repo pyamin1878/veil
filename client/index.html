@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veil — private messaging</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Join screen -->
+  <div id="join-screen" class="join-screen">
+    <form id="join-form" class="join-card">
+      <div class="join-logo" aria-hidden="true">🔒</div>
+      <h1>Veil</h1>
+      <p class="join-sub">End-to-end encrypted messaging.<br>
+        Keys are generated on this device and never leave it.</p>
+      <input id="join-name" type="text" maxlength="32" autocomplete="off"
+             placeholder="Your display name" required>
+      <button type="submit">Start messaging</button>
+      <p id="join-error" class="join-error" hidden></p>
+    </form>
+  </div>
+
+  <!-- Main app -->
+  <div id="app" class="app" hidden>
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <span class="brand">🔒 Veil</span>
+      </header>
+
+      <div class="me">
+        <div class="avatar" id="me-avatar"></div>
+        <div class="me-info">
+          <div class="me-name" id="me-name"></div>
+          <button class="link-btn" id="me-fingerprint-btn">Show my safety code</button>
+        </div>
+      </div>
+
+      <div class="roster-label">Online</div>
+      <ul id="roster" class="roster"></ul>
+      <div id="roster-empty" class="roster-empty">No one else is online yet.</div>
+    </aside>
+
+    <main class="chat">
+      <!-- Empty state -->
+      <div id="chat-empty" class="chat-empty">
+        <div class="chat-empty-icon" aria-hidden="true">💬</div>
+        <p>Select someone to start an<br>end-to-end encrypted conversation.</p>
+      </div>
+
+      <!-- Active conversation -->
+      <div id="chat-active" class="chat-active" hidden>
+        <header class="chat-header">
+          <div class="avatar" id="peer-avatar"></div>
+          <div class="chat-header-info">
+            <div class="chat-header-name" id="peer-name"></div>
+            <div class="chat-header-status">🔒 End-to-end encrypted</div>
+          </div>
+          <button class="link-btn" id="verify-btn">Verify</button>
+        </header>
+
+        <div id="messages" class="messages"></div>
+
+        <form id="composer" class="composer">
+          <input id="composer-input" type="text" autocomplete="off"
+                 placeholder="Encrypted message…">
+          <button type="submit" aria-label="Send">➤</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <!-- Safety code dialog -->
+  <dialog id="verify-dialog" class="verify-dialog">
+    <h2 id="verify-title">Safety code</h2>
+    <p class="verify-hint">Compare these codes over another channel — in person,
+      on a call — to confirm no one is intercepting your messages.</p>
+    <div id="verify-codes"></div>
+    <form method="dialog"><button class="dialog-close">Done</button></form>
+  </dialog>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

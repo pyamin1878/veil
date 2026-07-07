@@ -1,0 +1,14 @@
+{
+  "name": "veil",
+  "version": "0.1.0",
+  "description": "Minimal end-to-end encrypted messaging. Zero-dependency Python relay + WebCrypto browser client.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "python3 server.py",
+    "test": "node --test test/"
+  },
+  "engines": {
+    "node": ">=19 (tests only — the app itself needs no Node at all)"
+  }
+}
