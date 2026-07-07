@@ -13,8 +13,10 @@
   --danger: #dc2626;
 }
 
+/* Dark palette applies when the system prefers it (and the user hasn't
+   explicitly chosen light), or when the user explicitly chose dark. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #101216;
     --surface: #191c22;
     --surface-2: #22262e;
@@ -24,6 +26,17 @@
     --accent: #6366f1;
     --bubble-theirs: #262b34;
   }
+}
+
+:root[data-theme="dark"] {
+  --bg: #101216;
+  --surface: #191c22;
+  --surface-2: #22262e;
+  --border: #2b3038;
+  --text: #e7e9ec;
+  --text-dim: #9aa1ab;
+  --accent: #6366f1;
+  --bubble-theirs: #262b34;
 }
 
 * { box-sizing: border-box; margin: 0; }
@@ -116,7 +129,30 @@ input { font: inherit; color: inherit; }
   padding: 18px 20px 10px;
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .brand { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+
+.theme-btn {
+  background: none;
+  border: none;
+  font-size: 17px;
+  padding: 2px 4px;
+  border-radius: 8px;
+  line-height: 1;
+}
+.theme-btn:hover { background: var(--surface-2); }
+
+.join-screen .theme-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  font-size: 20px;
+}
 
 .me {
   display: flex;
@@ -387,7 +423,7 @@ input { font: inherit; color: inherit; }
   .me-info, .roster li .name, .roster-label, .brand { display: none; }
   .invite-label, .feedback-link, .roster-empty { display: none; }
   .sidebar-footer { padding: 10px 8px; }
-  .sidebar-header { padding: 10px; }
+  .sidebar-header { padding: 10px; justify-content: center; }
   .me { justify-content: center; padding: 12px 8px; }
   .roster li { justify-content: center; }
   .bubble { max-width: 84%; }
