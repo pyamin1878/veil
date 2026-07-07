@@ -10,7 +10,7 @@ the server only ever relays ciphertext and cannot read any message.
 
 ## Try it
 
-A public test instance runs at: **_(deploy in progress — URL coming shortly)_**
+**Try it now: https://veil-qayu.onrender.com**
 
 No install, no account — open the link, pick a display name, and send the
 invite link (button in the sidebar) to someone you want to chat with. The
