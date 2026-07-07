@@ -317,6 +317,23 @@ async function showSafetyCodes(peer) {
 }
 
 $('me-fingerprint-btn').addEventListener('click', () => showSafetyCodes(null));
+
+// ---------- invite ----------
+
+const inviteBtn = $('invite-btn');
+const inviteHTML = inviteBtn.innerHTML;
+
+inviteBtn.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(location.origin);
+  } catch {
+    prompt('Copy this invite link:', location.origin);
+    return;
+  }
+  inviteBtn.textContent = 'Copied ✓';
+  setTimeout(() => { inviteBtn.innerHTML = inviteHTML; }, 1600);
+});
+
 $('verify-btn').addEventListener('click', () => {
   const peer = state.peers.get(state.activePeer);
   if (peer) showSafetyCodes(peer);

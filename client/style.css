@@ -186,6 +186,31 @@ input { font: inherit; color: inherit; }
   font-size: 13px;
 }
 
+.sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.invite-btn {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13.5px;
+}
+.invite-btn:hover { border-color: var(--accent); color: var(--accent); }
+.invite-btn { overflow: hidden; white-space: nowrap; }
+
+.feedback-link { text-decoration: none; }
+.feedback-link:hover { text-decoration: underline; }
+
 .avatar {
   width: 34px;
   height: 34px;
@@ -360,6 +385,8 @@ input { font: inherit; color: inherit; }
 @media (max-width: 640px) {
   .sidebar { width: 84px; }
   .me-info, .roster li .name, .roster-label, .brand { display: none; }
+  .invite-label, .feedback-link, .roster-empty { display: none; }
+  .sidebar-footer { padding: 10px 8px; }
   .sidebar-header { padding: 10px; }
   .me { justify-content: center; padding: 12px 8px; }
   .roster li { justify-content: center; }

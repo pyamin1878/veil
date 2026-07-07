@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: veil
+    runtime: python
+    plan: free
+    buildCommand: echo "no build step"
+    startCommand: python3 server.py
+    healthCheckPath: /

@@ -21,6 +21,7 @@ SSE events:
 """
 
 import json
+import os
 import queue
 import secrets
 import sys
@@ -216,6 +217,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-Type", "text/event-stream")
         self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Accel-Buffering", "no")  # keep proxies from buffering SSE
         self.end_headers()
 
         try:
@@ -239,7 +241,8 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main():
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8420
+    # argv wins (tests, local use); PaaS hosts like Render set $PORT.
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", 8420))
     server = ThreadingHTTPServer(("0.0.0.0", port), Handler)
     server.daemon_threads = True
     print(f"Veil relay listening on http://localhost:{port}")

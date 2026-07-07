@@ -8,6 +8,19 @@ the server only ever relays ciphertext and cannot read any message.
 
 ![Veil chat UI](docs/screenshot.png)
 
+## Try it
+
+A public test instance runs at: **_(deploy in progress — URL coming shortly)_**
+
+No install, no account — open the link, pick a display name, and send the
+invite link (button in the sidebar) to someone you want to chat with. The
+free-tier instance sleeps when idle, so the first load can take up to a
+minute. Everyone on the same instance appears in each other's roster;
+message contents stay end-to-end encrypted regardless.
+
+Want your own instance? One click:
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/pyamin1878/veil)
+
 ## Quick start
 
 ```sh
