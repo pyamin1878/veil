@@ -1,5 +1,7 @@
 # 🔒 Veil
 
+[![CI](https://github.com/pyamin1878/veil/actions/workflows/ci.yml/badge.svg)](https://github.com/pyamin1878/veil/actions/workflows/ci.yml)
+
 Minimal, open-source, end-to-end encrypted messaging.
 
 A zero-dependency Python relay server plus a single-page web client. All
@@ -64,6 +66,21 @@ rejection, third-party decryption failure, fingerprint stability — and a full
 end-to-end run that boots the real Python server, joins two clients, and
 asserts the relayed wire bytes never contain plaintext.
 
+## Security
+
+Security is the project's top priority, and it improves in small, reviewable
+increments:
+
+- **[Threat model](docs/THREAT_MODEL.md)** — what Veil protects, what it
+  trusts, and a table of known gaps, each tracked as a
+  [`security`-labelled issue](https://github.com/pyamin1878/veil/issues?q=label%3Asecurity)
+  with its planned fix.
+- **[Security policy](SECURITY.md)** — how to report a vulnerability privately.
+- Every push runs the full test suite (including a real client↔server↔client
+  E2E flow) plus CodeQL static analysis in CI.
+- The server enforces abuse limits: per-IP rate limiting, a total-user cap,
+  strict public-key validation, and hardened response headers.
+
 ## Honest limitations
 
 This is a small, auditable design — not a Signal replacement. Know what you
@@ -97,6 +114,9 @@ client/
   crypto.js        all cryptography — pure functions, browser & Node
 test/
   e2e.test.mjs     crypto unit tests + full client↔server↔client flow
+  server.test.mjs  server hardening: validation, rate limits, caps, headers
+docs/
+  THREAT_MODEL.md  what Veil protects, trust assumptions, known gaps
 ```
 
 ## License

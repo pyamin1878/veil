@@ -6,3 +6,8 @@ services:
     buildCommand: echo "no build step"
     startCommand: python3 server.py
     healthCheckPath: /
+    envVars:
+      # Render fronts the app with its own proxy, so X-Forwarded-For is
+      # trustworthy here; rate limits then apply to real client IPs.
+      - key: VEIL_TRUST_PROXY
+        value: "1"
